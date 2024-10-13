@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:3000';
 export interface User {
   _id: string;
   address: string;
-  newAddress: string;
+  txProof: string;
 }
 
 export const getUsers = async (): Promise<User[]> => {
@@ -23,8 +23,8 @@ export const getUserByAddress = async (address: string): Promise<User> => {
   return response.data;
 };
 
-export const getUserByNewAddress = async (newAddress: string): Promise<User> => {
-  const response = await axios.get(`${API_URL}/users/${newAddress}`);
+export const getUserByTxProof = async (txProof: string): Promise<User> => {
+  const response = await axios.get(`${API_URL}/users/${txProof}`);
   return response.data;
 };
 

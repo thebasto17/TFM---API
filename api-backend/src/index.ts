@@ -19,7 +19,7 @@ mongoose.connect(process.env.MONGODB_URI as string)
 // Define User schema and model
 const userSchema = new mongoose.Schema({
   address: { type: String, required: true },
-  newAddress: { type: String, required: true }
+  txProof: { type: String, required: true }
 });
 
 const User = mongoose.model('User', userSchema);
@@ -45,11 +45,11 @@ app.get('/users/:identifier', async (req: Request, res: Response) => {
       // If it's a valid ObjectId, search by _id
       user = await User.findById(identifier);
     } else {
-      // If it's not a valid ObjectId, search by Address or NewAddress
+      // If it's not a valid ObjectId, search by Address or txProof
       user = await User.findOne({
         $or: [
           { address: identifier },
-          { newAddress: identifier }
+          { txProof: identifier }
         ]
       });
     }
