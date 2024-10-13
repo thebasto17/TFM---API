@@ -9,8 +9,8 @@ import {
 const router = Router();
 
 router.post('/', createMappingHandler);
-router.get('/:moneroTxKey', getMappingHandler);
-router.put('/:moneroTxKey', updateMappingHandler);
-router.delete('/:moneroTxKey', deleteMappingHandler);
+router.get('/:moneroTxId/:moneroTxKey', getMappingHandler);
+router.put('/:moneroTxId/:moneroTxKey', updateMappingHandler);
+router.delete('/:moneroTxId/:moneroTxKey', deleteMappingHandler);
 
 export default router;

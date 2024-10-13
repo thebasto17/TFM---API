@@ -3,8 +3,7 @@ import { createMapping, getMapping, updateMapping, deleteMapping } from '../serv
 
 export const createMappingHandler = async (req: Request, res: Response) => {
   try {
-    const { moneroTxKey, ethereumAddress, asset } = req.body;
-    const mapping = await createMapping(moneroTxKey, ethereumAddress, asset);
+    const mapping = await createMapping(req.body);
     res.status(201).json(mapping);
   } catch (err: any) {
     if (err.code === 11000) {
@@ -17,8 +16,8 @@ export const createMappingHandler = async (req: Request, res: Response) => {
 
 export const getMappingHandler = async (req: Request, res: Response) => {
   try {
-    const { moneroTxKey } = req.params;
-    const mapping = await getMapping(moneroTxKey);
+    const { moneroTxId, moneroTxKey } = req.params;
+    const mapping = await getMapping(moneroTxId, moneroTxKey);
     if (mapping) {
       res.status(200).json(mapping);
     } else {
@@ -31,9 +30,8 @@ export const getMappingHandler = async (req: Request, res: Response) => {
 
 export const updateMappingHandler = async (req: Request, res: Response) => {
   try {
-    const { moneroTxKey } = req.params;
-    const { ethereumAddress, asset } = req.body;
-    const mapping = await updateMapping(moneroTxKey, ethereumAddress, asset);
+    const { moneroTxId, moneroTxKey } = req.params;
+    const mapping = await updateMapping(moneroTxId, moneroTxKey, req.body);
     if (mapping) {
       res.status(200).json(mapping);
     } else {
@@ -46,8 +44,8 @@ export const updateMappingHandler = async (req: Request, res: Response) => {
 
 export const deleteMappingHandler = async (req: Request, res: Response) => {
   try {
-    const { moneroTxKey } = req.params;
-    const mapping = await deleteMapping(moneroTxKey);
+    const { moneroTxId, moneroTxKey } = req.params;
+    const mapping = await deleteMapping(moneroTxId, moneroTxKey);
     if (mapping) {
       res.status(200).json({ message: 'Address mapping deleted' });
     } else {
