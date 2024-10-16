@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { getUsers, createUser, updateUser, deleteUser, getUserById, getUserByAddress, getUserByNewAddress, User } from './api';
+import { getUsers, createUser, updateUser, deleteUser, getUserById, getUserByAddress, getUserByTxProof, User } from './api';
 
 const App: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [address, setAddress] = useState('');
-  const [newAddress, setNewAddress] = useState('');
+  const [txProof, setTxProof] = useState('');
   const [updateId, setUpdateId] = useState('');
-  const [updateField, setUpdateField] = useState<'address' | 'newAddress'>('address');
+  const [updateField, setUpdateField] = useState<'address' | 'txProof'>('address');
   const [updateValue, setUpdateValue] = useState('');
   const [deleteId, setDeleteId] = useState('');
-  const [searchType, setSearchType] = useState<'id' | 'address' | 'newAddress'>('id');
+  const [searchType, setSearchType] = useState<'id' | 'address' | 'txProof'>('id');
   const [searchValue, setSearchValue] = useState('');
   const [searchResult, setSearchResult] = useState<User | null>(null);
 
@@ -29,9 +29,9 @@ const App: React.FC = () => {
   const handleCreateUser = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await createUser({ address, newAddress });
+      await createUser({ address, txProof });
       setAddress('');
-      setNewAddress('');
+      setTxProof('');
       fetchUsers();
     } catch (error) {
       console.error('Error creating user:', error);
@@ -72,8 +72,8 @@ const App: React.FC = () => {
         case 'address':
           result = await getUserByAddress(searchValue);
           break;
-        case 'newAddress':
-          result = await getUserByNewAddress(searchValue);
+        case 'txProof':
+          result = await getUserByTxProof(searchValue);
           break;
       }
       setSearchResult(result);
@@ -97,9 +97,9 @@ const App: React.FC = () => {
         />
         <input
           type="text"
-          placeholder="New Address"
-          value={newAddress}
-          onChange={(e) => setNewAddress(e.target.value)}
+          placeholder="Tx Proof"
+          value={txProof}
+          onChange={(e) => setTxProof(e.target.value)}
         />
         <button type="submit">Add User</button>
       </form>
@@ -112,9 +112,9 @@ const App: React.FC = () => {
           value={updateId}
           onChange={(e) => setUpdateId(e.target.value)}
         />
-        <select value={updateField} onChange={(e) => setUpdateField(e.target.value as 'address' | 'newAddress')}>
+        <select value={updateField} onChange={(e) => setUpdateField(e.target.value as 'address' | 'txProof')}>
           <option value="address">Address</option>
-          <option value="newAddress">New Address</option>
+          <option value="txProof">Tx Proof</option>
         </select>
         <input
           type="text"
@@ -138,10 +138,10 @@ const App: React.FC = () => {
 
       <h2>Search User</h2>
       <form onSubmit={handleSearchUser}>
-        <select value={searchType} onChange={(e) => setSearchType(e.target.value as 'id' | 'address' | 'newAddress')}>
+        <select value={searchType} onChange={(e) => setSearchType(e.target.value as 'id' | 'address' | 'txProof')}>
           <option value="id">ID</option>
           <option value="address">Address</option>
-          <option value="newAddress">New Address</option>
+          <option value="txProof">Tx Proof</option>
         </select>
         <input
           type="text"
@@ -156,7 +156,7 @@ const App: React.FC = () => {
           <h3>Search Result:</h3>
           <p>ID: {searchResult._id}</p>
           <p>Address: {searchResult.address}</p>
-          <p>New Address: {searchResult.newAddress}</p>
+          <p>Tx Proof: {searchResult.txProof}</p>
         </div>
       )}
 
@@ -164,7 +164,7 @@ const App: React.FC = () => {
       <ul>
         {users.map((user) => (
           <li key={user._id}>
-            ID: {user._id}, Address: {user.address}, New Address: {user.newAddress}
+            ID: {user._id}, Address: {user.address}, Tx Proof: {user.txProof}
           </li>
         ))}
       </ul>
