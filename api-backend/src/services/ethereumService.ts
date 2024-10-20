@@ -2,7 +2,7 @@ import { ethers } from 'ethers';
 import ERC20ABI from "../abis/ERC20Token.json";
 
 const provider = new ethers.JsonRpcProvider('http://localhost:8545');
-const wallet = new ethers.Wallet("privateKey", provider);
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
 export const mintTokens = async (contractAddress: string, toAddress: string) => {
     try {
