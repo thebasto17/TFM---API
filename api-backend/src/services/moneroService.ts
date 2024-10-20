@@ -1,4 +1,3 @@
-// src/services/moneroService.ts
 import moneroTs from "monero-ts";
 
 export async function loadWallet() {
@@ -13,7 +12,7 @@ export async function loadWallet() {
 }
 
 export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
-  await wallet?.addListener(
+  await wallet.addListener(
     new (class extends moneroTs.MoneroWalletListener {
       async onOutputReceived(output: moneroTs.MoneroOutputWallet) {
         let txAmount = output.getAmount();
@@ -38,16 +37,11 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
           ]; //getAllMappings()
           mappings.forEach((mapping) => {
             if (isMatchingTransaction(Number(txAmount), mapping)) {
-              console.log("Matching");
+              // 1. Trigger Smart Contract minting
+              // 2. Delete mapping
             }
           });
         }
-
-        console.log("Balance: " + (await wallet.getBalance()));
-        console.log("Amount: " + txAmount);
-        console.log("TxHash: " + txHash);
-        console.log("Confirmed tx:", isConfirmed);
-        console.log("Locked tx:", isLocked);
       }
     })()
   );
@@ -55,6 +49,5 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
 
 function isMatchingTransaction(txAmount: number, mapping: any) {
   const randomNumberFromTx = Math.round((Number(txAmount) - mapping.assetPrice) * 10e11);
-  console.log("extractedRandom:", randomNumberFromTx);
   return randomNumberFromTx === mapping.randomNumber;
 }
