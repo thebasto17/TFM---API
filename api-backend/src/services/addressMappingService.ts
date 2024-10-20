@@ -9,15 +9,15 @@ export const listMappings = async (): Promise<IAddressMapping[]> => {
   return await AddressMapping.find();
 }
 
-export const getMapping = async (moneroTxId: string, moneroTxKey: string): Promise<IAddressMapping | null> => {
-  return await AddressMapping.findOne({ moneroTxId, moneroTxKey });
+export const getMapping = async (ethereumAddress: string, randomNumber: string): Promise<IAddressMapping | null> => {
+  return await AddressMapping.findOne({ ethereumAddress, randomNumber });
 };
 
-export const updateMapping = async (moneroTxId: string, moneroTxKey: string, addressMapping: IAddressMapping): Promise<IAddressMapping | null> => {
+export const updateMapping = async (ethereumAddress: string, randomNumber: string, addressMapping: IAddressMapping): Promise<IAddressMapping | null> => {
 
-  return AddressMapping.findOneAndUpdate({ moneroTxId, moneroTxKey }, addressMapping, {new: true});
+  return AddressMapping.findOneAndUpdate({ ethereumAddress, randomNumber }, addressMapping, {new: true});
 };
 
-export const deleteMapping = async (moneroTxId: string, moneroTxKey: string): Promise<IAddressMapping | null> => {
-  return await AddressMapping.findOneAndDelete({ moneroTxId, moneroTxKey });
+export const deleteMapping = async (ethereumAddress: string, randomNumber: string): Promise<IAddressMapping | null> => {
+  return await AddressMapping.findOneAndDelete({ ethereumAddress, randomNumber });
 };
