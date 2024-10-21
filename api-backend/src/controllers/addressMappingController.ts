@@ -16,8 +16,8 @@ export const createMappingHandler = async (req: Request, res: Response) => {
 
 export const getMappingHandler = async (req: Request, res: Response) => {
   try {
-    const { ethereumAddress, randomNumber } = req.params;
-    const mapping = await getMapping(ethereumAddress, randomNumber);
+    const { randomNumber } = req.params;
+    const mapping = await getMapping(randomNumber);
     if (mapping) {
       res.status(200).json(mapping);
     } else {
@@ -30,8 +30,8 @@ export const getMappingHandler = async (req: Request, res: Response) => {
 
 export const updateMappingHandler = async (req: Request, res: Response) => {
   try {
-    const { ethereumAddress, randomNumber } = req.params;
-    const mapping = await updateMapping(ethereumAddress, randomNumber, req.body);
+    const { randomNumber } = req.params;
+    const mapping = await updateMapping(randomNumber, req.body);
     if (mapping) {
       res.status(200).json(mapping);
     } else {
@@ -44,8 +44,8 @@ export const updateMappingHandler = async (req: Request, res: Response) => {
 
 export const deleteMappingHandler = async (req: Request, res: Response) => {
   try {
-    const { ethereumAddress, randomNumber } = req.params;
-    const mapping = await deleteMapping(ethereumAddress, randomNumber);
+    const { randomNumber } = req.params;
+    const mapping = await deleteMapping(randomNumber);
     if (mapping) {
       res.status(200).json({ message: 'Address mapping deleted' });
     } else {

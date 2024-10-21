@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0ee5eab5-488b-4245-b74e-63792ebddf77",
+		"_postman_id": "da70564a-01fd-4734-8e96-6248e8787435",
 		"name": "API Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "39136667"
@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/monero-price",
+					"raw": "http://localhost:3000/address-mapping/price/monero",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -20,7 +20,8 @@
 					"port": "3000",
 					"path": [
 						"address-mapping",
-						"monero-price"
+						"price",
+						"monero"
 					]
 				}
 			},
@@ -60,7 +61,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/0x2F3ee072484063344385f28a619655DBd76468e2/101010101010",
+					"raw": "http://localhost:3000/address-mapping/101010101010",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -68,7 +69,6 @@
 					"port": "3000",
 					"path": [
 						"address-mapping",
-						"0x2F3ee072484063344385f28a619655DBd76468e2",
 						"101010101010"
 					]
 				}
@@ -81,7 +81,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/0x2F3ee072484063344385f28a619655DBd76468e2/101010101010",
+					"raw": "http://localhost:3000/address-mapping/101010101010",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -89,7 +89,6 @@
 					"port": "3000",
 					"path": [
 						"address-mapping",
-						"0x2F3ee072484063344385f28a619655DBd76468e2",
 						"101010101010"
 					]
 				}
@@ -103,7 +102,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"amountToTransfer\": \"17.000100000005\"\n}",
+					"raw": "{\n    \"amountToTransfer\": \"17.000100000006\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -111,7 +110,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/0x2F3ee072484063344385f28a619655DBd76468e2/000000000001",
+					"raw": "http://localhost:3000/address-mapping/000000000001",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -119,7 +118,6 @@
 					"port": "3000",
 					"path": [
 						"address-mapping",
-						"0x2F3ee072484063344385f28a619655DBd76468e2",
 						"000000000001"
 					]
 				}

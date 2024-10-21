@@ -17,6 +17,6 @@ const AddressMappingSchema: Schema = new Schema({
   amountToTransfer: { type: String, required: true },
 });
 
-AddressMappingSchema.index({ ethereumAddress: 1, randomNumber: 1 }, { unique: true });
+AddressMappingSchema.index({ randomNumber: 1 }, { unique: true });
 
 export default mongoose.model<IAddressMapping>('AddressMapping', AddressMappingSchema);

@@ -9,15 +9,15 @@ export const listMappings = async (): Promise<IAddressMapping[]> => {
   return await AddressMapping.find();
 }
 
-export const getMapping = async (ethereumAddress: string, randomNumber: string): Promise<IAddressMapping | null> => {
-  return await AddressMapping.findOne({ ethereumAddress, randomNumber });
+export const getMapping = async (randomNumber: string): Promise<IAddressMapping | null> => {
+  return await AddressMapping.findOne({ randomNumber });
 };
 
-export const updateMapping = async (ethereumAddress: string, randomNumber: string, addressMapping: IAddressMapping): Promise<IAddressMapping | null> => {
+export const updateMapping = async (randomNumber: string, addressMapping: IAddressMapping): Promise<IAddressMapping | null> => {
 
-  return AddressMapping.findOneAndUpdate({ ethereumAddress, randomNumber }, addressMapping, {new: true});
+  return AddressMapping.findOneAndUpdate({ randomNumber }, addressMapping, {new: true});
 };
 
-export const deleteMapping = async (ethereumAddress: string, randomNumber: string): Promise<IAddressMapping | null> => {
-  return await AddressMapping.findOneAndDelete({ ethereumAddress, randomNumber });
+export const deleteMapping = async (randomNumber: string): Promise<IAddressMapping | null> => {
+  return await AddressMapping.findOneAndDelete({ randomNumber });
 };

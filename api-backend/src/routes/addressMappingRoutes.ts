@@ -11,9 +11,9 @@ import { getMoneroPrice } from '../controllers/coingeckoMappingController';
 const router = Router();
 
 router.post('/', createMappingHandler);
-router.get('/:ethereumAddress/:randomNumber', getMappingHandler);
-router.put('/:ethereumAddress/:randomNumber', updateMappingHandler);
-router.delete('/:ethereumAddress/:randomNumber', deleteMappingHandler);
-router.get('/monero-price', getMoneroPrice);
+router.get('/:randomNumber', getMappingHandler);
+router.put('/:randomNumber', updateMappingHandler);
+router.delete('/:randomNumber', deleteMappingHandler);
+router.get('/price/monero', getMoneroPrice);
 
 export default router;
