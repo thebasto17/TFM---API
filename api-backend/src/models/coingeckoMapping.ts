@@ -1,5 +1,8 @@
 export interface CoinGeckoResponse {
-    monero: {
-      usd: number;
-    };
+  ethereum: {
+    usd: number;
+  };
+  monero: {
+    usd: number;
+  };
 }

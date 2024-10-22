@@ -12,7 +12,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/price/monero",
+					"raw": "http://localhost:3000/address-mapping/price/0.5",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -21,7 +21,7 @@
 					"path": [
 						"address-mapping",
 						"price",
-						"monero"
+						"0.5"
 					]
 				}
 			},
@@ -110,7 +110,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/000000000001",
+					"raw": "http://localhost:3000/address-mapping/101010101010",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -118,7 +118,7 @@
 					"port": "3000",
 					"path": [
 						"address-mapping",
-						"000000000001"
+						"101010101010"
 					]
 				}
 			},

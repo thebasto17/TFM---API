@@ -4,12 +4,17 @@ import axios from 'axios';
 
 export const getMoneroPrice = async (req: Request, res: Response) => {
     try {
-        const url = `${process.env.COINGECKO_API}${process.env.MONERO_PARAMS}`;
-        const response = await axios.get<CoinGeckoResponse>(url);      
-        if (response.data && response.data.monero && response.data.monero.usd !== undefined) {
-            res.status(200).json({ price: response.data.monero.usd });
+        const { assetPrice } = req.params;
+        const price = parseFloat(assetPrice);
+        const url = `${process.env.COINGECKO_API}${process.env.COINGECKO_PARAMS}`;
+        const { data } = await axios.get<CoinGeckoResponse>(url);   
+                  
+        if (data && data.ethereum && data.ethereum.usd !== undefined && data.monero && data.monero.usd !== undefined ) {
+            const ethToUsd = price * Number(data.ethereum.usd);
+            const xmrPrice = ethToUsd / Number(data.monero.usd);
+            res.status(200).json({ price: xmrPrice.toFixed(2) });
         } else {
-            res.status(404).json({ error: 'Monero price not found in the response' });
+            res.status(404).json({ error: 'Failed to convert price from ETH to XMR' });
         }
     } catch (err: any) {
         res.status(500).json({ error: err.message });

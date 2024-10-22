@@ -14,6 +14,6 @@ router.post('/', createMappingHandler);
 router.get('/:randomNumber', getMappingHandler);
 router.put('/:randomNumber', updateMappingHandler);
 router.delete('/:randomNumber', deleteMappingHandler);
-router.get('/price/monero', getMoneroPrice);
+router.get('/price/:assetPrice', getMoneroPrice);
 
 export default router;
