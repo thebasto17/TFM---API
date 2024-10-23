@@ -7,34 +7,13 @@
 	},
 	"item": [
 		{
-			"name": "Get Monero Price",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/address-mapping/price/0.5",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"address-mapping",
-						"price",
-						"0.5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Create Address Mapping",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{ \n    \"ethereumAddress\": \"0x2F3ee072484063344385f28a619655DBd76468e2\", \n    \"randomNumber\": \"101010101010\",\n    \"assetAddress\": \"0x2Asset34566fg8937e2a7d82Address8912i8239\",\n    \"assetPrice\": \"15.000000000001\",\n    \"amountToTransfer\": \"15.101010101011\"\n}",
+					"raw": "{ \n    \"ethereumAddress\": \"0x2F3ee072484063344385f28a619655DBd76468e2\", \n    \"randomNumber\": \"101010101010\",\n    \"erc20Address\": \"0xerc20E56fd08970b43401492a02F6F38B663test\",\n    \"assetAddress\": \"0x2Asset34566fg8937e2a7d82Address8912i8239\",\n    \"assetPrice\": \"15.000000000001\",\n    \"amountToTransfer\": \"15.101010101011\",\n    \"ethereumUsd\": \"2502.25\",\n    \"moneroUsd\": \"155.56\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -119,6 +98,51 @@
 					"path": [
 						"address-mapping",
 						"101010101010"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ETH and XMR Prices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/address-mapping/price/prices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"address-mapping",
+						"price",
+						"prices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Convertion from ETH to XMR",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/address-mapping/price/convertEthToXmr/2502.25/155.56/0.5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"address-mapping",
+						"price",
+						"convertEthToXmr",
+						"2502.25",
+						"155.56",
+						"0.5"
 					]
 				}
 			},
