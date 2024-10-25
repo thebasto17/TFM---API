@@ -11,6 +11,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use('/address-mapping', addressMappingRoutes);
-app.use('/prices', priceExchangeRoutes);
+app.use('/price', priceExchangeRoutes);
 
 export default app;

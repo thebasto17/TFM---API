@@ -109,7 +109,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/price/prices",
+					"raw": "http://localhost:3000/price/prices",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -130,7 +130,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/address-mapping/price/convertEthToXmr/2502.25/155.56/0.5",
+					"raw": "http://localhost:3000/price/convertEthToXmr/2502.25/155.56/0.5",
 					"protocol": "http",
 					"host": [
 						"localhost"
