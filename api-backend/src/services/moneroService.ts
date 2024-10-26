@@ -1,7 +1,7 @@
 import moneroTs from "monero-ts";
-import { deleteMapping, listMappings } from "./addressMappingService";
+import {deleteMapping, listMappings, updateMapping} from "./addressMappingService";
 import { mintTokens } from "./ethereumService";
-import { IAddressMapping } from "../models/addressMapping";
+import AddressMapping, { IAddressMapping } from "../models/addressMapping";
 
 export async function loadWallet() {
   return moneroTs.openWalletFull({
@@ -30,7 +30,8 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
               // 1. Trigger Smart Contract minting
               await mintTokens(mapping.erc20Address, mapping.ethereumAddress);
               // 2. Delete mapping
-              await deleteMapping(mapping.randomNumber.toString());
+              const updatedMapping: IAddressMapping = mapping;//new AddressMapping({...mapping, minted:true});
+              await updateMapping(mapping.randomNumber.toString(), updatedMapping);
             }
           });
         }

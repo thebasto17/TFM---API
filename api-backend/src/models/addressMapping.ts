@@ -9,6 +9,7 @@ export interface IAddressMapping extends Document {
   amountToTransfer: string;
   ethereumUsd: string;
   moneroUsd: string;
+  minted: boolean;
 }
 
 // todo: afegir validaciones per eth addresses y monero tx key
@@ -21,6 +22,7 @@ const AddressMappingSchema: Schema = new Schema({
   amountToTransfer: { type: String, required: true },
   ethereumUsd: { type: String, required: true },
   moneroUsd: { type: String, required: true },
+  minted: { type: Boolean, required: true, default: false }, // flag to indicate whether the datatoken has already been minted
 });
 
 AddressMappingSchema.index({ randomNumber: 1 }, { unique: true });
