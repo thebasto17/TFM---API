@@ -1,6 +1,6 @@
 import moneroTs from "monero-ts";
-import { deleteMapping, listMappings } from "../services/addressMappingService";
-import { mintTokens } from "../services/ethereumService";
+import { deleteMapping, listMappings } from "./addressMappingService";
+import { mintTokens } from "./ethereumService";
 import { IAddressMapping } from "../models/addressMapping";
 
 export async function loadWallet() {
@@ -28,7 +28,7 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
           mappings.forEach(async (mapping: IAddressMapping) => {
             if (isMatchingTransaction(Number(txAmount), mapping)) {
               // 1. Trigger Smart Contract minting
-              //await mintTokens(_, mapping.ethereumAddress);
+              await mintTokens(mapping.erc20Address, mapping.ethereumAddress);
               // 2. Delete mapping
               await deleteMapping(mapping.randomNumber.toString());
             }
