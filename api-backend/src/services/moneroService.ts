@@ -30,7 +30,7 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
               // 1. Trigger Smart Contract minting
               await mintTokens(mapping.erc20Address, mapping.ethereumAddress);
               // 2. Delete mapping
-              const updatedMapping: IAddressMapping = mapping;//new AddressMapping({...mapping, minted:true});
+              const updatedMapping: IAddressMapping = new AddressMapping({...mapping, minted:true});
               await updateMapping(mapping.randomNumber.toString(), updatedMapping);
             }
           });

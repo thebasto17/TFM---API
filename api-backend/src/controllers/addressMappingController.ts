@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { createMapping, getMapping, updateMapping, deleteMapping } from '../services/addressMappingService';
+import { createMapping, getMapping, updateMapping, deleteMapping, listMappings } from '../services/addressMappingService';
 
 export const createMappingHandler = async (req: Request, res: Response) => {
   try {
@@ -13,6 +13,15 @@ export const createMappingHandler = async (req: Request, res: Response) => {
     }
   }
 };
+
+export const listMappingsHandler = async (req: Request, res: Response) => {
+  try {
+    const mappings = await listMappings();
+    res.status(200).json(mappings);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+  }
+}
 
 export const getMappingHandler = async (req: Request, res: Response) => {
   try {
