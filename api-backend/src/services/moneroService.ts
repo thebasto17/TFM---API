@@ -42,5 +42,5 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
 
 function isMatchingTransaction(txAmount: number, mapping: any) {
   const randomNumberFromTx = Math.round((Number(txAmount) - Number(mapping.assetPrice)) * 10e11);
-  return randomNumberFromTx === Number(mapping.randomNumber);
+  return randomNumberFromTx === Number(mapping.randomNumber) && !mapping.minted;
 }
