@@ -1,0 +1,30 @@
+version: '3'
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    networks:
+      - backend-network
+    restart: always
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017" # Exposing MongoDB port -> Realment ho podem treure quan anem a penjarho per seguretat, ho deixo pq en local em va bé mirar la db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - ./data/db:/data/db
+    networks:
+      - backend-network
+    restart: always
+
+networks:
+  backend-network:
+    driver: bridge
