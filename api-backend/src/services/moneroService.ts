@@ -25,7 +25,7 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
 
         if (isConfirmed && isLocked) {
           const mappings = await listMappings();
-          mappings.forEach(async (mapping: IAddressMapping) => {
+          for (const mapping of mappings) {
             if (isMatchingTransaction(Number(txAmount), mapping)) {
               // 1. Trigger Smart Contract minting
               await mintTokens(mapping.erc20Address, mapping.ethereumAddress);
@@ -33,7 +33,7 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
               const updatedMapping: IAddressMapping = new AddressMapping({...mapping, minted:true});
               await updateMapping(mapping.randomNumber.toString(), updatedMapping);
             }
-          });
+          }
         }
       }
     })()

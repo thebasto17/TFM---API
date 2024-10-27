@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: jordiperez10/tfm-api-backend:latest
+run:
+  web: npm start
