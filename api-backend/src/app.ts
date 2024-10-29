@@ -12,5 +12,11 @@ app.use(cors());
 app.use(express.json());
 app.use('/address-mapping', addressMappingRoutes);
 app.use('/price', priceExchangeRoutes);
+app.get('/', (req, res) => {
+  res.status(200).send('OK');
+});
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
 
 export default app;
