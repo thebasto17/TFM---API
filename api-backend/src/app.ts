@@ -10,13 +10,17 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/address-mapping', addressMappingRoutes);
-app.use('/price', priceExchangeRoutes);
-app.get('/', (req, res) => {
+
+const apiRouter = express.Router();
+apiRouter.use('/address-mapping', addressMappingRoutes);
+apiRouter.use('/price', priceExchangeRoutes);
+apiRouter.get('/', (req, res) => {
   res.status(200).send('OK');
 });
-app.get('/health', (req, res) => {
+apiRouter.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
+
+app.use('/api', apiRouter);
 
 export default app;
