@@ -7,4 +7,6 @@ ast = true
 build_info = true
 extra_output = ["storageLayout"]
 
+[networks.sepolia]
+url = "https://sepolia.infura.io/v3/YOUR_INFURA_PROJECT_ID"
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
