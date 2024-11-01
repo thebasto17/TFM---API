@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import ERC20ABI from "../abis/ERC20Token.json";
 
-const provider = new ethers.JsonRpcProvider('http://localhost:8545');
+const provider = new ethers.JsonRpcProvider(process.env.SEPOLIA_RPC_URL);
 const private_key = process.env.PRIVATE_KEY ?? '';
 const wallet = new ethers.Wallet(private_key, provider);
 

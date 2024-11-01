@@ -24,13 +24,18 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
         let isLocked = output.getTx().getIsLocked();
 
         if (isConfirmed && isLocked) {
+          console.log(`Confirmed received in monero service, proceeding to mint data token`);
+          console.log(`Tx amount is ${txAmount}`)
           const mappings = await listMappings();
           for (const mapping of mappings) {
             if (isMatchingTransaction(Number(txAmount), mapping)) {
               // 1. Trigger Smart Contract minting
+              console.log(`Minting tokens from monero service`);
               await mintTokens(mapping.erc20Address, mapping.ethereumAddress);
               // 2. Delete mapping
-              const updatedMapping: IAddressMapping = new AddressMapping({...mapping, minted:true});
+              console.log(`Deleting mapping from monero service`);
+              const updatedMapping: IAddressMapping = {...mapping, minted:true} as IAddressMapping;
+              console.log(`Updated mapping ${JSON.stringify(updatedMapping)}, old one: ${mapping}`);
               await updateMapping(mapping.randomNumber.toString(), updatedMapping);
             }
           }
@@ -41,6 +46,7 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
 }
 
 function isMatchingTransaction(txAmount: number, mapping: any) {
-  const randomNumberFromTx = Math.round((Number(txAmount) - Number(mapping.assetPrice)) * 10e11);
+  const randomNumberFromTx = Math.round((Number(txAmount) - Number(mapping.assetPrice)*1e12));
+  console.log(`Random number from tx is ${randomNumberFromTx}, from mapping ${mapping.randomNumber}`);
   return randomNumberFromTx === Number(mapping.randomNumber) && !mapping.minted;
 }

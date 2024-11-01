@@ -7,8 +7,7 @@ import "../src/ERC20Token.sol";
 contract DeployMyTokenScript is Script {
 
     function run() external {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
+        vm.startBroadcast();
 
         ERC20Token token = new ERC20Token();
 
