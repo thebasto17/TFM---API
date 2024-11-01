@@ -1,7 +1,6 @@
 import moneroTs from "monero-ts";
-import {deleteMapping, listMappings, updateMapping} from "./addressMappingService";
+import { listMappings, updateOneMapping} from "./addressMappingService";
 import { mintTokens } from "./ethereumService";
-import AddressMapping, { IAddressMapping } from "../models/addressMapping";
 
 export async function loadWallet() {
   return moneroTs.openWalletFull({
@@ -33,10 +32,8 @@ export async function monitorWallet(wallet: moneroTs.MoneroWalletFull) {
               console.log(`Minting tokens from monero service`);
               await mintTokens(mapping.erc20Address, mapping.ethereumAddress);
               // 2. Delete mapping
-              console.log(`Deleting mapping from monero service`);
-              const updatedMapping: IAddressMapping = {...mapping, minted:true} as IAddressMapping;
-              console.log(`Updated mapping ${JSON.stringify(updatedMapping)}, old one: ${mapping}`);
-              await updateMapping(mapping.randomNumber.toString(), updatedMapping);
+              console.log(`Updating mapping from monero service`);
+              await updateOneMapping(mapping.randomNumber.toString(), { minted: true });
             }
           }
         }
