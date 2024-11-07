@@ -1,6 +1,7 @@
 # Ignore node_modules
 api-backend/node_modules/
 api-backend/.idea
+api-backend/.env
 
 # Compiler files
 contracts/cache/

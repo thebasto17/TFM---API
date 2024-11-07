@@ -14,7 +14,6 @@ services:
     networks:
       - backend-network
 
-
   backend:
     build: .
     ports:
@@ -30,7 +29,7 @@ services:
   mongodb:
     image: mongo
     ports:
-      - "27017:27017" # Exposing MongoDB port -> Realment ho podem treure quan anem a penjarho per seguretat, ho deixo pq en local em va bé mirar la db
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example

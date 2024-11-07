@@ -12,7 +12,7 @@ contract DeployMyTokenScript is Script {
         ERC20Token token = new ERC20Token();
 
         vm.stopBroadcast();
-        console.log("ERC20Token desplegado en:", address(token));
+        console.log("ERC20Token deployed on:", address(token));
     }
 }
 
